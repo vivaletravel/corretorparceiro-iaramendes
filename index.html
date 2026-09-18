@@ -60,16 +60,89 @@
   .form .aviso-lgpd{font-size:12.5px;color:rgba(18,36,31,.55);margin-bottom:20px}
   .campo{margin-bottom:16px}
   label{display:block;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--verde-salvia);margin-bottom:7px}
-  input[type=text],input[type=tel]{width:100%;padding:13px 15px;font-family:var(--corpo);font-size:16px;border:1px solid var(--linha);border-radius:11px;background:var(--offwhite);color:var(--tinta);transition:border-color .18s, box-shadow .18s, background .18s}
+  input[type=text],input[type=tel],input[type=email]{width:100%;padding:13px 15px;font-family:var(--corpo);font-size:16px;border:1px solid var(--linha);border-radius:11px;background:var(--offwhite);color:var(--tinta);transition:border-color .18s, box-shadow .18s, background .18s}
   input::placeholder{color:rgba(18,36,31,.35)}
-  input[type=text]:focus,input[type=tel]:focus{outline:none;background:#fff;border-color:var(--verde-nevoa);box-shadow:0 0 0 3px rgba(111,163,148,.22)}
+  input[type=text]:focus,input[type=tel]:focus,input[type=email]:focus{outline:none;background:#fff;border-color:var(--verde-nevoa);box-shadow:0 0 0 3px rgba(111,163,148,.22)}
   input:focus-visible{outline:2px solid var(--verde-salvia);outline-offset:1px}
+  label .opcional{font-weight:400;letter-spacing:0;text-transform:none;color:rgba(18,36,31,.42)}
   .erro{font-size:12.5px;color:#9B3232;margin-top:6px;display:none}
   .campo.invalido input{border-color:#C86A6A}
   .campo.invalido .erro{display:block}
 
+  .aceite{margin:4px 0 18px;padding-top:16px;border-top:1px solid var(--linha)}
+  .linha-aceite{display:flex;align-items:flex-start;gap:10px}
+  .linha-aceite input[type=checkbox]{flex:0 0 auto;width:18px;height:18px;margin-top:2px;accent-color:var(--verde-profundo);cursor:pointer}
+  .linha-aceite label{font-size:13px;font-weight:400;letter-spacing:0;text-transform:none;color:rgba(18,36,31,.78);line-height:1.5;margin:0;cursor:pointer}
+  .linha-aceite label strong{font-weight:600;color:var(--verde-profundo)}
+  .link-termos{margin:9px 0 0 28px;padding:0;background:none;border:none;font-family:var(--corpo);font-size:12.5px;font-weight:600;color:var(--verde-salvia);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+  .link-termos:hover{color:var(--verde-nevoa)}
+  .link-termos:focus-visible{outline:2px solid var(--verde-salvia);outline-offset:2px}
+  .aceite .erro{margin-left:28px}
+  .aceite.invalido .erro{display:block}
+  .aceite.invalido input[type=checkbox]{outline:2px solid #C86A6A;outline-offset:2px}
+  .registro-aceite{display:none;margin:9px 0 0 28px;font-size:12px;color:var(--verde-nevoa)}
+  .registro-aceite.ativo{display:block}
+
+  .envio-termo{display:none;margin-top:16px;padding:20px;background:var(--offwhite);border:1px solid var(--linha);border-radius:14px}
+  .envio-termo.ativo{display:block}
+  .envio-termo p.chamada{font-size:12.5px;color:rgba(18,36,31,.62);line-height:1.5;margin-bottom:16px}
+  .envio-termo input[type=text],.envio-termo input[type=email],.envio-termo select{background:#fff}
+  .envio-termo .campo:last-of-type{margin-bottom:0}
+  .envio-termo .botao-secundario{width:100%;margin-top:16px;padding:12px 14px;font-size:13.5px}
+  .envio-termo .nota-titularidade{font-size:12px;color:rgba(18,36,31,.55);line-height:1.5;margin-top:14px;padding-top:12px;border-top:1px solid var(--linha)}
+  .envio-termo .nota-titularidade strong{color:var(--verde-salvia);font-weight:600}
+  select{width:100%;padding:13px 12px;font-family:var(--corpo);font-size:16px;border:1px solid var(--linha);border-radius:11px;background:var(--offwhite);color:var(--tinta);cursor:pointer}
+  select:focus{outline:none;border-color:var(--verde-nevoa);box-shadow:0 0 0 3px rgba(111,163,148,.22)}
+  .dupla{display:flex;gap:10px;align-items:flex-start}
+  .dupla > *{flex:1;min-width:0}
+  .dupla > select{flex:0 0 132px}
+  .escolha{display:flex;gap:8px;flex-wrap:wrap}
+  .pilula{display:inline-flex;align-items:center;gap:7px;margin:0;padding:9px 14px;border:1px solid var(--linha);border-radius:10px;background:#fff;font-size:13.5px;font-weight:500;letter-spacing:0;text-transform:none;color:rgba(18,36,31,.72);cursor:pointer;transition:border-color .18s,color .18s}
+  .pilula:hover{border-color:var(--verde-nevoa)}
+  .pilula input[type=radio]{width:15px;height:15px;margin:0;accent-color:var(--verde-profundo);cursor:pointer}
+  .pilula:has(input:checked){border-color:var(--verde-salvia);color:var(--verde-profundo);font-weight:600}
+  .grupo-recebimento{display:none;margin-top:2px}
+  .grupo-recebimento.ativo{display:block}
+  .status-envio{display:none;position:relative;margin-top:10px;padding-left:19px;font-size:12.5px;line-height:1.5}
+  .status-envio.ativo{display:block}
+  .status-envio::before{position:absolute;left:0;top:0;font-weight:700}
+  .status-envio.enviando{color:var(--verde-nevoa)}
+  .status-envio.enviando::before{content:"\2026"}
+  .status-envio.sucesso{color:var(--verde-salvia)}
+  .status-envio.sucesso::before{content:"\2713"}
+  .status-envio.falha{color:#9B3232}
+  .status-envio.falha::before{content:"\0021"}
+  .status-envio a{color:inherit;font-weight:600;text-underline-offset:3px}
+
+  dialog.termos{width:min(720px,calc(100vw - 28px));max-height:min(84vh,880px);padding:0;border:none;border-radius:18px;background:#fff;color:var(--tinta);box-shadow:0 30px 80px -40px rgba(30,64,56,.75)}
+  dialog.termos::backdrop{background:rgba(18,36,31,.55)}
+  .termos-topo{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:22px 26px 15px;border-bottom:1px solid var(--linha)}
+  .termos-topo h2{font-family:var(--display);font-size:20px;font-weight:600;color:var(--verde-profundo);line-height:1.3}
+  .termos-topo .versao{display:block;margin-top:5px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--verde-nevoa)}
+  .fechar-termos{flex:0 0 auto;width:32px;height:32px;border:1px solid var(--linha);border-radius:50%;background:var(--offwhite);color:var(--verde-salvia);font-size:16px;line-height:1;cursor:pointer;transition:background .18s,color .18s}
+  .fechar-termos:hover{background:var(--verde-profundo);color:var(--offwhite)}
+  .termos-corpo{padding:20px 26px 8px;overflow-y:auto;max-height:calc(min(84vh,880px) - 172px)}
+  .termos-corpo h3{font-family:var(--display);font-size:15.5px;font-weight:600;color:var(--verde-profundo);margin:22px 0 9px}
+  .termos-corpo h3:first-child{margin-top:0}
+  .termos-corpo p{font-size:13.5px;color:rgba(18,36,31,.78);line-height:1.6;margin-bottom:9px}
+  .termos-corpo p.item{padding-left:32px;text-indent:-32px}
+  .termos-corpo p.item .n{display:inline-block;width:32px;text-indent:0;font-weight:600;color:var(--verde-salvia)}
+  .termos-corpo p strong{color:var(--verde-profundo);font-weight:600}
+  .termos-rodape{padding:14px 26px 22px;border-top:1px solid var(--linha)}
+  @media (max-width:640px){
+    .termos-corpo{padding:18px 20px 8px;max-height:calc(84vh - 190px)}
+    .termos-topo{padding:18px 20px 14px}
+    .termos-rodape{padding:14px 20px 20px}
+  }
+
   .botao{width:100%;padding:16px;border:none;border-radius:11px;cursor:pointer;background:var(--verde-profundo);color:var(--offwhite);font-family:var(--corpo);font-size:15.5px;font-weight:600;transition:background .18s, transform .12s}
   .botao:hover{background:var(--verde-salvia)}
+  .botao:disabled{background:rgba(30,64,56,.26);cursor:not-allowed}
+  .botao:disabled:hover{background:rgba(30,64,56,.26)}
+  .botao:disabled:active{transform:none}
+  .aviso-bloqueio{display:none;margin-bottom:12px;padding:11px 14px;border-left:3px solid var(--areia);background:rgba(184,149,106,.09);border-radius:0 10px 10px 0;font-size:12.5px;line-height:1.5;color:rgba(18,36,31,.72)}
+  .aviso-bloqueio.ativo{display:block}
+  .aviso-bloqueio strong{color:var(--verde-profundo);font-weight:600}
   .botao:active{transform:translateY(1px)}
   .botao:focus-visible{outline:2px solid var(--areia);outline-offset:2px}
 
@@ -146,7 +219,7 @@
   <section class="coluna-texto">
     <div class="destaque">
       <span class="eyebrow">Comissão do parceiro</span>
-      <div class="numero"><strong>30%</strong><span>do lucro de cada plano<br>que você fechar<sup>*</sup></span></div>
+      <div class="numero"><strong>25%</strong><span>do lucro de cada plano<br>que você fechar<sup>*</sup></span></div>
       <p class="apoio">Você apresenta o cliente. Eu cuido do resto.</p>
       <p class="nota">*Vou te explicar exatamente como funciona a bonificação para cada tipo de plano.</p>
     </div>
@@ -163,7 +236,7 @@
 
     <div class="form">
       <h2>Gere a sua arte</h2>
-      <p class="aviso-lgpd">Os dados ficam apenas no seu navegador e são usados só para escrever na imagem. Nada é enviado ou armazenado.</p>
+      <p class="aviso-lgpd">Seu nome e WhatsApp ficam no navegador e servem só para escrever na imagem. Ao assinar o termo, você informa e-mail, CPF e dados de recebimento — usados só para registrar a assinatura e pagar a sua comissão.</p>
 
       <div class="campo" id="campo-nome">
         <label for="nome">Seu nome</label>
@@ -177,7 +250,92 @@
         <span class="erro">Informe o número com DDD, com 10 ou 11 dígitos.</span>
       </div>
 
-      <button class="botao" id="baixar">Baixar minha arte</button>
+      <div class="aceite" id="campo-aceite">
+        <div class="linha-aceite">
+          <input type="checkbox" id="aceite">
+          <label for="aceite">Li e aceito o <strong>Termo de Aceite do Programa de Corretores Parceiros</strong> — comissão de 25% do lucro sobre a <strong>primeira mensalidade</strong> (pagamento único, sem recorrência), pagamento em até 30 dias contados do fechamento da venda — nunca da simples indicação e regras de divulgação na internet.</label>
+        </div>
+        <button type="button" class="link-termos" id="abrir-termos">Ler o termo completo</button>
+        <p class="registro-aceite" id="registro-aceite"></p>
+
+        <div class="envio-termo" id="envio-termo">
+          <p class="chamada">Complete os dados abaixo para assinar. Enviamos a sua via por e-mail, e são esses mesmos dados que a Iara usa para pagar a sua comissão.</p>
+
+          <div class="campo" id="campo-email">
+            <label for="email">Seu e-mail</label>
+            <input type="email" id="email" placeholder="voce@email.com.br" autocomplete="email">
+            <span class="erro">Informe um e-mail válido para receber a sua via do termo.</span>
+          </div>
+
+          <div class="campo" id="campo-cpf">
+            <label for="cpf">Seu CPF</label>
+            <input type="text" id="cpf" placeholder="000.000.000-00" inputmode="numeric" maxlength="14" autocomplete="off">
+            <span class="erro">Informe um CPF válido — ele identifica você no termo e no pagamento.</span>
+          </div>
+
+          <div class="campo">
+            <label>Como você recebe a comissão</label>
+            <div class="escolha">
+              <label class="pilula"><input type="radio" name="recebimento" value="pix" checked><span>PIX</span></label>
+              <label class="pilula"><input type="radio" name="recebimento" value="ted"><span>Transferência</span></label>
+            </div>
+          </div>
+
+          <div class="grupo-recebimento ativo" id="bloco-pix">
+            <div class="campo" id="campo-pix">
+              <label for="pix-chave">Sua chave PIX</label>
+              <div class="dupla">
+                <select id="pix-tipo" aria-label="Tipo da chave PIX">
+                  <option value="cpf">CPF</option>
+                  <option value="email">E-mail</option>
+                  <option value="telefone">Telefone</option>
+                  <option value="aleatoria">Aleatória</option>
+                </select>
+                <input type="text" id="pix-chave" placeholder="Informe a chave" autocomplete="off">
+              </div>
+              <span class="erro">Informe a sua chave PIX.</span>
+            </div>
+          </div>
+
+          <div class="grupo-recebimento" id="bloco-ted">
+            <div class="campo" id="campo-banco">
+              <label for="banco">Banco</label>
+              <input type="text" id="banco" placeholder="Ex.: Banco do Brasil" autocomplete="off">
+              <span class="erro">Informe o banco.</span>
+            </div>
+            <div class="dupla">
+              <div class="campo" id="campo-agencia">
+                <label for="agencia">Agência</label>
+                <input type="text" id="agencia" placeholder="0000" inputmode="numeric" maxlength="10" autocomplete="off">
+                <span class="erro">Informe a agência.</span>
+              </div>
+              <div class="campo" id="campo-conta">
+                <label for="conta">Conta com dígito</label>
+                <input type="text" id="conta" placeholder="00000-0" maxlength="20" autocomplete="off">
+                <span class="erro">Informe a conta.</span>
+              </div>
+            </div>
+            <div class="campo">
+              <label>Tipo de conta</label>
+              <div class="escolha">
+                <label class="pilula"><input type="radio" name="tipo-conta" value="corrente" checked><span>Corrente</span></label>
+                <label class="pilula"><input type="radio" name="tipo-conta" value="poupanca"><span>Poupança</span></label>
+              </div>
+            </div>
+          </div>
+
+          <p class="nota-titularidade">A conta precisa ser de <strong>titularidade do próprio parceiro</strong>, como prevê a cláusula 3.4 do termo.</p>
+
+          <button type="button" class="botao-secundario" id="enviar-termo">Assinar e receber o termo por e-mail</button>
+          <p class="status-envio" id="status-envio"></p>
+        </div>
+
+        <span class="erro">É preciso aceitar o termo para gerar a sua arte.</span>
+      </div>
+
+      <p class="aviso-bloqueio ativo" id="aviso-bloqueio">Antes de gerar a arte, <strong>conclua o passo anterior</strong>: preencha os seus dados, aceite o termo e complete as informações de assinatura.</p>
+
+      <button class="botao" id="baixar" disabled>Baixar minha arte</button>
 
       <div class="pos-download" id="pos-download">
         <p class="titulo">Arte baixada. Use esta legenda no envio:</p>
@@ -195,6 +353,83 @@
     <p class="nota-arte">Formato 4:5 (1080 × 1350 px), ideal para feed, story e WhatsApp.</p>
   </aside>
 </main>
+
+<dialog class="termos" id="termos" aria-labelledby="termos-titulo">
+  <div class="termos-topo">
+    <div>
+      <h2 id="termos-titulo">Termo de Aceite — Programa de Corretores Parceiros</h2>
+      <span class="versao">Versão 1 — vigente desde 18/09/2026</span>
+    </div>
+    <button type="button" class="fechar-termos" id="fechar-termos" aria-label="Fechar o termo">&#10005;</button>
+  </div>
+
+  <div class="termos-corpo">
+    <h3>1. O que é este programa</h3>
+    <p class="item"><span class="n">1.1</span>Este termo regula a participação do <strong>Parceiro</strong> no Programa de Corretores Parceiros conduzido por <strong>Iara Mendes</strong> (a “Consultoria”), cujo objetivo é a indicação de pessoas interessadas em planos de saúde.</p>
+    <p class="item"><span class="n">1.2</span>O Parceiro atua como <strong>indicador e divulgador</strong>. A cotação, a negociação, a proposta, a contratação e o pós-venda são conduzidos pela Consultoria, por profissional habilitado. O Parceiro não assina proposta, não representa operadora, não emite cotação oficial e não recebe pagamento de cliente.</p>
+
+    <h3>2. Comissão</h3>
+    <p class="item"><span class="n">2.1</span>O Parceiro faz jus a <strong>25% do lucro líquido da Consultoria referente à primeira mensalidade</strong> do plano contratado por cliente que ele tenha indicado.</p>
+    <p class="item"><span class="n">2.2</span>A comissão é <strong>paga uma única vez por contrato</strong>, calculada sobre essa primeira mensalidade. <strong>Não há comissão recorrente:</strong> as mensalidades seguintes pagas pelo cliente, as renovações e os reajustes do plano não geram novo pagamento ao Parceiro.</p>
+    <p class="item"><span class="n">2.3</span>Entende-se por lucro líquido o valor que a Consultoria recebe da operadora ou administradora a título de comissão sobre essa primeira mensalidade, deduzidos os impostos incidentes e os custos diretos daquela venda.</p>
+    <p class="item"><span class="n">2.4</span>A comissão é devida quando a indicação resulta em contrato <strong>assinado, vigente e com a primeira mensalidade efetivamente paga</strong> pelo cliente. Sem o pagamento dessa primeira mensalidade, não há comissão.</p>
+    <p class="item"><span class="n">2.5</span>Cada modalidade — pessoa física, empresarial e por adesão — tem forma de bonificação própria, que a Consultoria informa ao Parceiro antes da indicação.</p>
+
+    <h3>3. Pagamento — só no fechamento, em até 30 dias</h3>
+    <p class="item"><span class="n">3.1</span><strong>Não há pagamento por indicação.</strong> Indicar, divulgar, encaminhar contato ou despertar o interesse de alguém não gera, por si só, nenhum valor ao Parceiro. A comissão nasce exclusivamente do <strong>fechamento</strong> do cliente indicado, nos termos da cláusula 2.4. Indicações que não se convertem em contrato não geram pagamento, qualquer que seja a quantidade de indicações feitas.</p>
+    <p class="item"><span class="n">3.2</span>Havendo o fechamento, a comissão é paga em <strong>até 30 dias contados da data do fechamento da venda</strong> com o cliente indicado — isto é, da assinatura do contrato com a primeira mensalidade efetivamente paga. <strong>O prazo não é contado da data da indicação.</strong></p>
+    <p class="item"><span class="n">3.3</span>O prazo de até 30 dias existe porque o valor a ser distribuído depende do repasse feito pela operadora ou administradora à Consultoria: a operadora só libera a comissão após confirmar a vigência do contrato e o pagamento da primeira mensalidade pelo cliente.</p>
+    <p class="item"><span class="n">3.4</span>O pagamento é feito por PIX ou transferência bancária, em conta de <strong>titularidade do próprio Parceiro</strong>, usando os dados que ele informou no momento do aceite. Cabe ao Parceiro manter esses dados atualizados; a Consultoria não responde por valores enviados a dados incorretos fornecidos por ele.</p>
+    <p class="item"><span class="n">3.5</span>Se a operadora <strong>estornar ou cancelar</strong> o repasse — por cancelamento do contrato, inadimplência, desistência no prazo de arrependimento, exclusão de beneficiário ou fraude —, a comissão correspondente deixa de ser devida. Se já tiver sido paga, o valor é compensado nas comissões seguintes ou devolvido pelo Parceiro em até 15 dias.</p>
+
+    <h3>4. Registro e validade da indicação</h3>
+    <p class="item"><span class="n">4.1</span>A indicação se considera válida quando o Parceiro registra o cliente junto à Consultoria <strong>antes</strong> do primeiro contato dela com essa pessoa.</p>
+    <p class="item"><span class="n">4.2</span>Não gera comissão o cliente que já esteja em atendimento ou na base da Consultoria, nem o já indicado por outro parceiro. Prevalece sempre o primeiro registro.</p>
+    <p class="item"><span class="n">4.3</span>O registro da indicação vale por <strong>90 dias</strong>. Se a contratação ocorrer depois desse prazo, a comissão fica a critério da Consultoria.</p>
+
+    <h3>5. Regras de divulgação na internet</h3>
+    <p class="item"><span class="n">5.1</span>O Parceiro pode divulgar em redes sociais, WhatsApp, e-mail e site próprio, usando as artes e os materiais fornecidos pela Consultoria.</p>
+    <p class="item"><span class="n">5.2</span>É <strong>vedado</strong> ao Parceiro:</p>
+    <p class="item"><span class="n">a)</span>prometer preço, carência, cobertura, rede credenciada, reembolso ou aceitação que não tenham sido confirmados por escrito pela Consultoria;</p>
+    <p class="item"><span class="n">b)</span>usar nome, marca ou logotipo de operadora, administradora ou da Consultoria de modo a parecer representante, preposto ou canal autorizado, inclusive criando perfil, página, grupo ou anúncio em nome delas;</p>
+    <p class="item"><span class="n">c)</span>comprar links patrocinados ou anúncios usando as marcas das operadoras, das administradoras ou da Consultoria como palavra-chave;</p>
+    <p class="item"><span class="n">d)</span>fazer disparo em massa não solicitado, usar listas compradas, robôs, perfis falsos ou qualquer automação que viole as regras da plataforma onde a divulgação é feita;</p>
+    <p class="item"><span class="n">e)</span>alterar as artes e os materiais recebidos, salvo pelos campos de personalização do próprio gerador (nome e WhatsApp do Parceiro);</p>
+    <p class="item"><span class="n">f)</span>coletar do cliente dados de saúde, documentos, cartões ou pagamentos — o interessado deve ser encaminhado diretamente à Consultoria;</p>
+    <p class="item"><span class="n">g)</span>apresentar-se como corretor habilitado, funcionário, sócio ou preposto da Consultoria.</p>
+    <p class="item"><span class="n">5.3</span>A arte personalizada é de uso pessoal do Parceiro e não pode ser repassada a terceiros para uso próprio deles.</p>
+    <p class="item"><span class="n">5.4</span>A Consultoria pode solicitar a remoção de qualquer publicação em desacordo com este termo, e o Parceiro se compromete a removê-la em <strong>até 48 horas</strong> do pedido.</p>
+    <p class="item"><span class="n">5.5</span>O descumprimento das regras desta seção permite à Consultoria suspender ou encerrar a parceria e reter as comissões relativas às indicações obtidas de forma irregular.</p>
+
+    <h3>6. Dados dos clientes e privacidade</h3>
+    <p class="item"><span class="n">6.1</span>Os dados de quem responder à divulgação devem ser repassados <strong>somente à Consultoria</strong>, com o conhecimento e o consentimento da pessoa, e usados apenas para essa finalidade.</p>
+    <p class="item"><span class="n">6.2</span>É vedado vender, compartilhar com terceiros ou usar esses dados para qualquer outra finalidade, nos termos da Lei nº 13.709/2018 (LGPD).</p>
+    <p class="item"><span class="n">6.3</span>A geração da arte acontece inteiramente no navegador do Parceiro: nome e WhatsApp são usados apenas para escrever na imagem, e o registro do aceite fica gravado no próprio navegador. Quando o Parceiro assina e solicita a sua via, são transmitidos à Consultoria o nome, o e-mail, o WhatsApp, o CPF, os dados bancários ou a chave PIX indicados para recebimento, a data e a hora do aceite e a versão do termo. O CPF e os dados de recebimento têm finalidade exclusiva de identificar o Parceiro no termo e viabilizar o pagamento da comissão; os demais, de registrar e comprovar a assinatura. Esses dados não são usados para outra finalidade nem compartilhados com terceiros, e o Parceiro pode solicitar a exclusão a qualquer tempo.</p>
+
+    <h3>7. Natureza da relação</h3>
+    <p class="item"><span class="n">7.1</span>Trata-se de <strong>parceria comercial autônoma</strong>. Este termo não cria vínculo empregatício, societário, de representação comercial exclusiva, franquia ou consórcio entre as partes.</p>
+    <p class="item"><span class="n">7.2</span>Não há exclusividade, meta, jornada, subordinação ou obrigação de produção. O Parceiro indica quando e quanto quiser.</p>
+    <p class="item"><span class="n">7.3</span>Cada parte responde pelos próprios tributos e obrigações decorrentes dos valores que receber.</p>
+
+    <h3>8. Vigência e encerramento</h3>
+    <p class="item"><span class="n">8.1</span>Este termo vigora por prazo indeterminado, a partir do aceite.</p>
+    <p class="item"><span class="n">8.2</span>Qualquer das partes pode encerrar a parceria a qualquer tempo, por comunicação escrita, sem multa ou aviso prévio.</p>
+    <p class="item"><span class="n">8.3</span>O encerramento não afeta as comissões de indicações já registradas e de contratos já fechados, que continuam sendo pagas nas condições previstas aqui.</p>
+    <p class="item"><span class="n">8.4</span>Encerrada a parceria, o Parceiro deve cessar a divulgação e remover os materiais publicados em até 5 dias.</p>
+
+    <h3>9. Alterações do termo</h3>
+    <p class="item"><span class="n">9.1</span>A Consultoria pode atualizar este termo. A versão vigente fica sempre publicada nesta página, com número e data.</p>
+    <p class="item"><span class="n">9.2</span>As alterações valem para as indicações registradas após a publicação da nova versão.</p>
+
+    <h3>10. Aceite</h3>
+    <p class="item"><span class="n">10.1</span>Ao marcar a caixa de seleção no formulário e gerar a arte, o Parceiro declara que <strong>leu, compreendeu e aceita integralmente</strong> este termo.</p>
+    <p class="item"><span class="n">10.2</span>Em caso de dúvida, o Parceiro deve falar com a Consultoria <strong>antes</strong> de aceitar.</p>
+  </div>
+
+  <div class="termos-rodape">
+    <button type="button" class="botao" id="aceitar-termos">Li e aceito o termo</button>
+  </div>
+</dialog>
 
 <section id="painel">
   <div class="interno">
@@ -493,6 +728,24 @@
       Object.keys(dataURIs).forEach(function(k){ if (dataURIs[k]) limpo[k] = dataURIs[k]; });
 
       var clone = document.documentElement.cloneNode(true);
+      var dlgClone = clone.querySelector("#termos");
+      if (dlgClone) dlgClone.removeAttribute("open");
+      var ckClone = clone.querySelector("#aceite");
+      if (ckClone) ckClone.removeAttribute("checked");
+      var caClone = clone.querySelector("#campo-aceite");
+      if (caClone) caClone.classList.remove("invalido");
+      var regClone = clone.querySelector("#registro-aceite");
+      if (regClone){ regClone.classList.remove("ativo"); regClone.textContent = ""; }
+      var envClone = clone.querySelector("#envio-termo");
+      if (envClone) envClone.classList.remove("ativo");
+      var stClone = clone.querySelector("#status-envio");
+      if (stClone){ stClone.className = "status-envio"; stClone.textContent = ""; }
+      var emClone = clone.querySelector("#campo-email");
+      if (emClone) emClone.classList.remove("invalido");
+      var btClone = clone.querySelector("#baixar");
+      if (btClone) btClone.setAttribute("disabled", "");
+      var avClone = clone.querySelector("#aviso-bloqueio");
+      if (avClone) avClone.classList.add("ativo");
       var alvo = clone.querySelector("#logos-embutidas");
       alvo.textContent = "window.LOGOS_EMBUTIDAS = " + JSON.stringify(limpo).replace(/</g, "\\u003c") + ";";
 
@@ -529,6 +782,7 @@
     var ok = true;
     if ((inputNome.value || "").trim().length < 3){ campoNome.classList.add("invalido"); ok = false; }
     if ((inputTel.value || "").replace(/\D/g,"").length < 10){ campoTel.classList.add("invalido"); ok = false; }
+    if (!checkAceite.checked){ campoAceite.classList.add("invalido"); ok = false; }
     return ok;
   }
   function nomeArquivo(){
@@ -569,6 +823,405 @@
   } else {
     window.addEventListener("load", iniciar);
   }
+
+  /* ---------- Termo de aceite ---------- */
+  var VERSAO_TERMO   = "1";
+  var CHAVE_ACEITE   = "iara-corretor-parceiro-aceite-v" + VERSAO_TERMO;
+  var campoAceite    = document.getElementById("campo-aceite");
+  var checkAceite    = document.getElementById("aceite");
+  var registroAceite = document.getElementById("registro-aceite");
+  var dialogoTermos  = document.getElementById("termos");
+
+  function lerAceite(){
+    try { return JSON.parse(localStorage.getItem(CHAVE_ACEITE) || "null"); }
+    catch (e){ return null; }
+  }
+  function gravarAceite(){
+    var registro = { versao: VERSAO_TERMO, data: new Date().toISOString() };
+    try { localStorage.setItem(CHAVE_ACEITE, JSON.stringify(registro)); } catch (e){}
+    return registro;
+  }
+  function mostrarRegistro(registro){
+    if (!registro || !registro.data){
+      registroAceite.textContent = "";
+      registroAceite.classList.remove("ativo");
+      return;
+    }
+    var d = new Date(registro.data);
+    var quando = isNaN(d.getTime()) ? "" :
+      " em " + d.toLocaleDateString("pt-BR") +
+      " às " + d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+    registroAceite.textContent = "Termo versão " + registro.versao + " aceito" + quando + " neste navegador.";
+    registroAceite.classList.add("ativo");
+  }
+  function abrirTermos(){
+    if (dialogoTermos.showModal) dialogoTermos.showModal();
+    else dialogoTermos.setAttribute("open", "");
+  }
+  function fecharTermos(){
+    if (dialogoTermos.close) dialogoTermos.close();
+    else dialogoTermos.removeAttribute("open");
+  }
+
+  document.getElementById("abrir-termos").addEventListener("click", abrirTermos);
+  document.getElementById("fechar-termos").addEventListener("click", fecharTermos);
+  document.getElementById("aceitar-termos").addEventListener("click", function(){
+    checkAceite.checked = true;
+    campoAceite.classList.remove("invalido");
+    mostrarRegistro(gravarAceite());
+    fecharTermos();
+  });
+  dialogoTermos.addEventListener("click", function(e){
+    if (e.target === dialogoTermos) fecharTermos();
+  });
+
+  checkAceite.addEventListener("change", function(){
+    if (checkAceite.checked){
+      campoAceite.classList.remove("invalido");
+      mostrarRegistro(gravarAceite());
+    } else {
+      try { localStorage.removeItem(CHAVE_ACEITE); } catch (e){}
+      mostrarRegistro(null);
+    }
+  });
+
+  (function restaurarAceite(){
+    var registro = lerAceite();
+    if (registro && registro.versao === VERSAO_TERMO){
+      checkAceite.checked = true;
+      mostrarRegistro(registro);
+    }
+  })();
+
+
+  /* ---------- Assinatura e envio do termo ----------
+     endpoint: URL do app da Web publicado pelo Google Apps Script
+     (Implantar > Nova implantação > App da Web > acesso "Qualquer pessoa").
+     Enquanto ficar vazio, o parceiro baixa o comprovante assinado e recebe um
+     atalho de envio manual — nada quebra. */
+  var ENVIO_TERMO = {
+    endpoint: "",
+    emailConsultoria: "",
+    nomeConsultoria: "Iara Mendes"
+  };
+
+  var campoEmail    = document.getElementById("campo-email");
+  var inputEmail    = document.getElementById("email");
+  var campoCPF      = document.getElementById("campo-cpf");
+  var inputCPF      = document.getElementById("cpf");
+  var campoPix      = document.getElementById("campo-pix");
+  var pixTipo       = document.getElementById("pix-tipo");
+  var pixChave      = document.getElementById("pix-chave");
+  var campoBanco    = document.getElementById("campo-banco");
+  var inputBanco    = document.getElementById("banco");
+  var campoAgencia  = document.getElementById("campo-agencia");
+  var inputAgencia  = document.getElementById("agencia");
+  var campoConta    = document.getElementById("campo-conta");
+  var inputConta    = document.getElementById("conta");
+  var blocoPix      = document.getElementById("bloco-pix");
+  var blocoTed      = document.getElementById("bloco-ted");
+  var blocoEnvio    = document.getElementById("envio-termo");
+  var botaoBaixar   = document.getElementById("baixar");
+  var avisoBloqueio = document.getElementById("aviso-bloqueio");
+  var statusEnvio   = document.getElementById("status-envio");
+  var botaoEnvio    = document.getElementById("enviar-termo");
+
+  function emailValido(v){
+    return /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test((v || "").trim());
+  }
+  function mascaraCPF(v){
+    var d = (v || "").replace(/\D/g, "").slice(0, 11);
+    if (d.length <= 3) return d;
+    if (d.length <= 6) return d.slice(0,3) + "." + d.slice(3);
+    if (d.length <= 9) return d.slice(0,3) + "." + d.slice(3,6) + "." + d.slice(6);
+    return d.slice(0,3) + "." + d.slice(3,6) + "." + d.slice(6,9) + "-" + d.slice(9);
+  }
+  function cpfValido(v){
+    var c = (v || "").replace(/\D/g, ""), s = 0, r, i;
+    if (c.length !== 11 || /^(\d)\1{10}$/.test(c)) return false;
+    for (i = 0; i < 9; i++) s += parseInt(c.charAt(i), 10) * (10 - i);
+    r = (s * 10) % 11; if (r === 10 || r === 11) r = 0;
+    if (r !== parseInt(c.charAt(9), 10)) return false;
+    for (s = 0, i = 0; i < 10; i++) s += parseInt(c.charAt(i), 10) * (11 - i);
+    r = (s * 10) % 11; if (r === 10 || r === 11) r = 0;
+    return r === parseInt(c.charAt(10), 10);
+  }
+  function formaRecebimento(){
+    var r = document.querySelector('input[name="recebimento"]:checked');
+    return r ? r.value : "pix";
+  }
+  function dadosRecebimento(){
+    if (formaRecebimento() === "pix"){
+      return { forma: "PIX", tipoChave: pixTipo.value, chave: (pixChave.value || "").trim() };
+    }
+    var t = document.querySelector('input[name="tipo-conta"]:checked');
+    return {
+      forma: "Transferência bancária",
+      banco: (inputBanco.value || "").trim(),
+      agencia: (inputAgencia.value || "").trim(),
+      conta: (inputConta.value || "").trim(),
+      tipoConta: t && t.value === "poupanca" ? "Poupança" : "Corrente"
+    };
+  }
+  function resumoRecebimento(r){
+    if (r.forma === "PIX") return "PIX · chave " + r.tipoChave + " · " + r.chave;
+    return r.banco + " · agência " + r.agencia + " · conta " + r.conta + " (" + r.tipoConta + ")";
+  }
+  function novoId(){
+    try { if (window.crypto && crypto.randomUUID) return crypto.randomUUID(); } catch (e){}
+    return "as-" + Date.now() + "-" + Math.random().toString(16).slice(2, 10);
+  }
+  function status(tipo, html){
+    statusEnvio.className = "status-envio ativo " + tipo;
+    statusEnvio.innerHTML = html;
+  }
+  function limparStatus(){
+    statusEnvio.className = "status-envio";
+    statusEnvio.innerHTML = "";
+  }
+  function textoDoTermo(){
+    var corpo = dialogoTermos.querySelector(".termos-corpo");
+    var t = corpo.innerText || corpo.textContent || "";
+    return t.replace(/[ \t]+/g, " ").replace(/\n{3,}/g, "\n\n").trim();
+  }
+  function hashTermo(texto){
+    if (!window.crypto || !crypto.subtle || !window.TextEncoder) return Promise.resolve("");
+    try {
+      return crypto.subtle.digest("SHA-256", new TextEncoder().encode(texto)).then(function(buf){
+        return Array.prototype.map.call(new Uint8Array(buf), function(b){
+          return ("0" + b.toString(16)).slice(-2);
+        }).join("");
+      })["catch"](function(){ return ""; });
+    } catch (e){ return Promise.resolve(""); }
+  }
+  function apelido(){
+    return (inputNome.value || "parceiro").trim().toLowerCase()
+      .normalize("NFD").replace(/[̀-ͯ]/g, "")
+      .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "parceiro";
+  }
+  function dataLegivel(iso){
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return iso;
+    return d.toLocaleDateString("pt-BR") + " às " +
+           d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  }
+  function fuso(){
+    try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e){ return ""; }
+  }
+  function escapar(s){
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  function montarRegistro(hash){
+    var reg = lerAceite() || gravarAceite();
+    return {
+      tipo: "aceite-termo-corretor-parceiro",
+      idAssinatura: novoId(),
+      versaoTermo: VERSAO_TERMO,
+      parceiro: {
+        nome: (inputNome.value || "").trim(),
+        email: (inputEmail.value || "").trim(),
+        whatsapp: (inputTel.value || "").trim(),
+        cpf: (inputCPF.value || "").trim()
+      },
+      recebimento: dadosRecebimento(),
+      assinatura: {
+        dataHoraISO: reg.data,
+        dataHoraLegivel: dataLegivel(reg.data),
+        fusoHorario: fuso(),
+        hashTermoSHA256: hash,
+        origem: location.href.split("#")[0],
+        navegador: navigator.userAgent
+      },
+      termoTexto: textoDoTermo()
+    };
+  }
+
+  function comprovanteHTML(dados){
+    var linhas = [
+      ["Parceiro", dados.parceiro.nome],
+      ["CPF", dados.parceiro.cpf],
+      ["E-mail", dados.parceiro.email],
+      ["WhatsApp", dados.parceiro.whatsapp],
+      ["Recebimento da comissão", resumoRecebimento(dados.recebimento)],
+      ["Versão do termo", dados.versaoTermo],
+      ["Data e hora do aceite", dados.assinatura.dataHoraLegivel + (dados.assinatura.fusoHorario ? " (" + dados.assinatura.fusoHorario + ")" : "")],
+      ["Registro técnico", dados.assinatura.dataHoraISO + " · " + dados.idAssinatura],
+      ["Impressão digital do termo", dados.assinatura.hashTermoSHA256 ? "SHA-256 " + dados.assinatura.hashTermoSHA256 : "não disponível neste navegador"]
+    ].map(function(l){
+      return '<tr><th>' + escapar(l[0]) + '</th><td>' + escapar(l[1]) + '</td></tr>';
+    }).join("");
+
+    return '<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8">' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+      '<title>Termo assinado — ' + escapar(dados.parceiro.nome) + '</title><style>' +
+      ':root{--verde-profundo:#1E4038;--verde-salvia:#2F5D50;--verde-nevoa:#6FA394;--offwhite:#FAF7F2;--tinta:#12241F;--linha:rgba(30,64,56,.14)}' +
+      '*{box-sizing:border-box;margin:0;padding:0}' +
+      'body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--offwhite);color:var(--tinta);line-height:1.55;padding:40px 22px}' +
+      '.folha{max-width:760px;margin:0 auto;background:#fff;border:1px solid var(--linha);border-radius:18px;overflow:hidden;box-shadow:0 18px 44px -32px rgba(30,64,56,.5)}' +
+      '.cabeca{background:var(--verde-profundo);color:var(--offwhite);padding:30px 34px}' +
+      '.cabeca .selo{font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--verde-nevoa);margin-bottom:9px}' +
+      '.cabeca h1{font-family:"Playfair Display",Georgia,serif;font-size:25px;font-weight:600;line-height:1.25}' +
+      '.corpo{padding:30px 34px}' +
+      'table{width:100%;border-collapse:collapse;margin-bottom:28px}' +
+      'th,td{text-align:left;vertical-align:top;padding:11px 0;border-bottom:1px solid var(--linha);font-size:13.5px}' +
+      'th{width:38%;font-weight:600;color:var(--verde-salvia);padding-right:16px}' +
+      'td{color:rgba(18,36,31,.8);word-break:break-word}' +
+      'h2{font-family:"Playfair Display",Georgia,serif;font-size:17px;color:var(--verde-profundo);margin-bottom:12px}' +
+      'pre{white-space:pre-wrap;font-family:inherit;font-size:13px;color:rgba(18,36,31,.78);background:var(--offwhite);border:1px solid var(--linha);border-radius:12px;padding:20px;line-height:1.65}' +
+      '.rodape{padding:20px 34px 28px;font-size:12px;color:rgba(18,36,31,.5);border-top:1px solid var(--linha)}' +
+      '@media print{body{background:#fff;padding:0}.folha{border:none;box-shadow:none}}' +
+      '</style></head><body><div class="folha">' +
+      '<div class="cabeca"><div class="selo">Programa de corretores parceiros</div>' +
+      '<h1>Termo de aceite assinado eletronicamente</h1></div>' +
+      '<div class="corpo"><table>' + linhas + '</table>' +
+      '<h2>Íntegra do termo aceito</h2><pre>' + escapar(dados.termoTexto) + '</pre></div>' +
+      '<div class="rodape">Documento gerado automaticamente no momento do aceite. A impressão digital SHA-256 identifica exatamente a versão do texto que foi aceita: qualquer alteração posterior no termo produz uma impressão diferente.</div>' +
+      '</div></body></html>';
+  }
+
+  function baixarComprovante(dados){
+    var blob = new Blob([comprovanteHTML(dados)], { type: "text/html;charset=utf-8" });
+    var link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "termo-assinado-" + apelido() + ".html";
+    link.click();
+    setTimeout(function(){ URL.revokeObjectURL(link.href); }, 4000);
+  }
+
+  function atalhoManual(dados){
+    if (!ENVIO_TERMO.emailConsultoria) return "";
+    var corpo = "Aceite do Termo do Programa de Corretores Parceiros\n\n" +
+      "Parceiro: " + dados.parceiro.nome + "\n" +
+      "CPF: " + dados.parceiro.cpf + "\n" +
+      "E-mail: " + dados.parceiro.email + "\n" +
+      "WhatsApp: " + dados.parceiro.whatsapp + "\n" +
+      "Recebimento: " + resumoRecebimento(dados.recebimento) + "\n" +
+      "Termo versão " + dados.versaoTermo + " aceito em " + dados.assinatura.dataHoraLegivel + "\n\n" +
+      "Segue em anexo o comprovante baixado.";
+    return '<br><a href="mailto:' + encodeURIComponent(ENVIO_TERMO.emailConsultoria) +
+      "?subject=" + encodeURIComponent("Aceite do termo — " + dados.parceiro.nome) +
+      "&body=" + encodeURIComponent(corpo) + '">Abrir o e-mail já preenchido</a>';
+  }
+
+  /* O Apps Script não responde ao preflight CORS: mandamos como text/plain,
+     que é requisição simples. Se ainda assim o navegador bloquear a leitura da
+     resposta, reenviamos em modo cego — o idAssinatura evita duplicidade. */
+  function transmitir(dados){
+    var corpo = JSON.stringify(dados);
+    var cabecalho = { "Content-Type": "text/plain;charset=utf-8" };
+    return fetch(ENVIO_TERMO.endpoint, { method: "POST", headers: cabecalho, body: corpo })
+      .then(function(r){
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return { confirmado: true };
+      })["catch"](function(){
+        return fetch(ENVIO_TERMO.endpoint, { method: "POST", mode: "no-cors", headers: cabecalho, body: corpo })
+          .then(function(){ return { confirmado: false }; });
+      });
+  }
+
+  function validarAssinatura(marcar){
+    var ok = true;
+    function falhar(campo){ if (marcar && campo) campo.classList.add("invalido"); ok = false; }
+
+    if (marcar){
+      [campoNome, campoEmail, campoCPF, campoPix, campoBanco, campoAgencia, campoConta]
+        .forEach(function(c){ if (c) c.classList.remove("invalido"); });
+    }
+
+    if ((inputNome.value || "").trim().length < 3) falhar(campoNome);
+    if (!emailValido(inputEmail.value)) falhar(campoEmail);
+    if (!cpfValido(inputCPF.value)) falhar(campoCPF);
+
+    if (formaRecebimento() === "pix"){
+      if ((pixChave.value || "").trim().length < 5) falhar(campoPix);
+    } else {
+      if ((inputBanco.value || "").trim().length < 2) falhar(campoBanco);
+      if ((inputAgencia.value || "").trim().length < 2) falhar(campoAgencia);
+      if ((inputConta.value || "").trim().length < 2) falhar(campoConta);
+    }
+    return ok;
+  }
+
+  /* A arte só é liberada depois do passo anterior completo: dados do parceiro,
+     aceite do termo e informações de assinatura válidas. */
+  function arteLiberada(){
+    return (inputNome.value || "").trim().length >= 3 &&
+           (inputTel.value || "").replace(/\D/g, "").length >= 10 &&
+           checkAceite.checked &&
+           validarAssinatura(false);
+  }
+  function atualizarBotaoArte(){
+    var liberada = arteLiberada();
+    botaoBaixar.disabled = !liberada;
+    avisoBloqueio.classList.toggle("ativo", !liberada);
+  }
+
+  function enviarTermo(){
+    if (!validarAssinatura(true)){
+      status("falha", "Confira os campos destacados para concluir a assinatura.");
+      return;
+    }
+    botaoEnvio.disabled = true;
+    status("enviando", "Registrando a sua assinatura…");
+
+    hashTermo(textoDoTermo()).then(function(hash){
+      var dados = montarRegistro(hash);
+
+      if (!ENVIO_TERMO.endpoint){
+        baixarComprovante(dados);
+        status("sucesso", "Comprovante assinado baixado no seu dispositivo. O envio automático por e-mail ainda não está ativo nesta página." + atalhoManual(dados));
+        return;
+      }
+
+      return transmitir(dados).then(function(r){
+        if (r.confirmado){
+          status("sucesso", "Pronto. Enviamos a sua via assinada para <strong>" + escapar(dados.parceiro.email) + "</strong>. Se não aparecer em alguns minutos, confira o spam.");
+        } else {
+          baixarComprovante(dados);
+          status("sucesso", "Assinatura registrada e enviada para <strong>" + escapar(dados.parceiro.email) + "</strong>. Baixamos também o comprovante no seu dispositivo, para você guardar de imediato.");
+        }
+      })["catch"](function(){
+        baixarComprovante(dados);
+        status("falha", "Não conseguimos enviar o e-mail agora, então baixamos o comprovante assinado no seu dispositivo — ele vale como registro." + atalhoManual(dados));
+      });
+    })["catch"](function(){
+      status("falha", "Não foi possível registrar a assinatura neste navegador. Tente novamente.");
+    }).then(function(){
+      botaoEnvio.disabled = false;
+    });
+  }
+
+  function alternarRecebimento(){
+    var pix = formaRecebimento() === "pix";
+    blocoPix.classList.toggle("ativo", pix);
+    blocoTed.classList.toggle("ativo", !pix);
+  }
+  function alternarBlocoEnvio(){
+    if (checkAceite.checked) blocoEnvio.classList.add("ativo");
+    else { blocoEnvio.classList.remove("ativo"); limparStatus(); }
+  }
+
+  inputCPF.addEventListener("input", function(){
+    inputCPF.value = mascaraCPF(inputCPF.value);
+    campoCPF.classList.remove("invalido");
+  });
+  inputEmail.addEventListener("input", function(){ campoEmail.classList.remove("invalido"); });
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="recebimento"]'), function(r){
+    r.addEventListener("change", alternarRecebimento);
+  });
+  botaoEnvio.addEventListener("click", enviarTermo);
+  checkAceite.addEventListener("change", alternarBlocoEnvio);
+  var formulario = document.querySelector(".form");
+  formulario.addEventListener("input", atualizarBotaoArte);
+  formulario.addEventListener("change", atualizarBotaoArte);
+
+  alternarRecebimento();
+  alternarBlocoEnvio();
+  atualizarBotaoArte();
+
+
 })();
 </script>
 
