@@ -13,6 +13,19 @@ página (navegador)  ──POST JSON──▶  Apps Script  ──▶  Planilha 
 
 Custo zero. Usa a conta Google da própria Iara.
 
+O mesmo script atende as duas variações do programa — a de 25% e a de 50%.
+Cada aceite chega marcado com `programa` e `comissao`, que viram colunas na
+planilha e aparecem no assunto do e-mail de arquivo. Não é preciso publicar
+dois scripts nem duas planilhas.
+
+| Página | Comissão | Link |
+|---|---|---|
+| `index.html` | 25% | https://vivaletravel.github.io/corretorparceiro-iaramendes/ |
+| `parceiro-50/index.html` | 50% | https://vivaletravel.github.io/corretorparceiro-iaramendes/parceiro-50/ |
+
+As duas apontam para o mesmo `endpoint`, então a URL do Apps Script precisa ser
+preenchida **nos dois arquivos**.
+
 ---
 
 ## Publicação, passo a passo
@@ -100,6 +113,7 @@ Duas proteções recomendadas:
   ```js
   origensPermitidas: ['https://vivaletravel.github.io/corretorparceiro-iaramendes/']
   ```
+  O prefixo cobre as duas páginas, inclusive `/parceiro-50/`.
   O script passa a recusar envios que não venham dali. Não é infalível (o campo é
   enviado pelo navegador), mas barra disparo automatizado casual.
 - **Vigiar a cota.** Conta Gmail comum envia **100 e-mails/dia**; Google Workspace, 1.500.
@@ -122,6 +136,8 @@ script ignora um ID que já esteja na planilha. Nenhum parceiro recebe e-mail re
 {
   "tipo": "aceite-termo-corretor-parceiro",
   "idAssinatura": "uuid",
+  "programa": "padrao | parceiro-50",
+  "comissao": "25% | 50%",
   "versaoTermo": "1",
   "parceiro":    { "nome": "", "email": "", "whatsapp": "", "cpf": "" },
   "recebimento": { "forma": "PIX", "tipoChave": "cpf", "chave": "" },

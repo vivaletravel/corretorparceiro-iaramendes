@@ -219,7 +219,7 @@
   <section class="coluna-texto">
     <div class="destaque">
       <span class="eyebrow">Comissão do parceiro</span>
-      <div class="numero"><strong>25%</strong><span>do lucro de cada plano<br>que você fechar<sup>*</sup></span></div>
+      <div class="numero"><strong>50%</strong><span>do lucro de cada plano<br>que você fechar<sup>*</sup></span></div>
       <p class="apoio">Você apresenta o cliente. Eu cuido do resto.</p>
       <p class="nota">*Vou te explicar exatamente como funciona a bonificação para cada tipo de plano.</p>
     </div>
@@ -253,7 +253,7 @@
       <div class="aceite" id="campo-aceite">
         <div class="linha-aceite">
           <input type="checkbox" id="aceite">
-          <label for="aceite">Li e aceito o <strong>Termo de Aceite do Programa de Corretores Parceiros</strong> — comissão de 25% do lucro sobre a <strong>primeira mensalidade</strong> (pagamento único, sem recorrência), pagamento em até 30 dias contados do fechamento da venda — nunca da simples indicação — e as regras de divulgação na internet.</label>
+          <label for="aceite">Li e aceito o <strong>Termo de Aceite do Programa de Corretores Parceiros</strong> — comissão de 50% do lucro sobre a <strong>primeira mensalidade</strong> (pagamento único, sem recorrência), pagamento em até 30 dias contados do fechamento da venda — nunca da simples indicação — e as regras de divulgação na internet.</label>
         </div>
         <button type="button" class="link-termos" id="abrir-termos">Ler o termo completo</button>
         <p class="registro-aceite" id="registro-aceite"></p>
@@ -369,7 +369,7 @@
     <p class="item"><span class="n">1.2</span>O Parceiro atua como <strong>indicador e divulgador</strong>. A cotação, a negociação, a proposta, a contratação e o pós-venda são conduzidos pela Consultoria, por profissional habilitado. O Parceiro não assina proposta, não representa operadora, não emite cotação oficial e não recebe pagamento de cliente.</p>
 
     <h3>2. Comissão</h3>
-    <p class="item"><span class="n">2.1</span>O Parceiro faz jus a <strong>25% do lucro líquido da Consultoria referente à primeira mensalidade</strong> do plano contratado por cliente que ele tenha indicado.</p>
+    <p class="item"><span class="n">2.1</span>O Parceiro faz jus a <strong>50% do lucro líquido da Consultoria referente à primeira mensalidade</strong> do plano contratado por cliente que ele tenha indicado.</p>
     <p class="item"><span class="n">2.2</span>A comissão é <strong>paga uma única vez por contrato</strong>, calculada sobre essa primeira mensalidade. <strong>Não há comissão recorrente:</strong> as mensalidades seguintes pagas pelo cliente, as renovações e os reajustes do plano não geram novo pagamento ao Parceiro.</p>
     <p class="item"><span class="n">2.3</span>Entende-se por lucro líquido o valor que a Consultoria recebe da operadora ou administradora a título de comissão sobre essa primeira mensalidade, deduzidos os impostos incidentes e os custos diretos daquela venda.</p>
     <p class="item"><span class="n">2.4</span>A comissão é devida quando a indicação resulta em contrato <strong>assinado, vigente e com a primeira mensalidade efetivamente paga</strong> pelo cliente. Sem o pagamento dessa primeira mensalidade, não há comissão.</p>
@@ -828,7 +828,7 @@
   var VERSAO_TERMO   = "1";
   /* Cada variacao do programa tem comissao propria: o id separa o registro
      do aceite no navegador e identifica o acordo assinado no arquivo. */
-  var PROGRAMA       = { id: "padrao", comissao: "25%" };
+  var PROGRAMA       = { id: "parceiro-50", comissao: "50%" };
   var CHAVE_ACEITE   = "iara-corretor-parceiro-aceite-" + PROGRAMA.id + "-v" + VERSAO_TERMO;
   var campoAceite    = document.getElementById("campo-aceite");
   var checkAceite    = document.getElementById("aceite");

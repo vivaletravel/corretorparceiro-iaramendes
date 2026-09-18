@@ -21,7 +21,7 @@ const CONFIG = {
 };
 
 const COLUNAS = [
-  'Recebido em', 'ID da assinatura', 'Versão do termo', 'Aceito em', 'Fuso',
+  'Recebido em', 'ID da assinatura', 'Programa', 'Comissão', 'Versão do termo', 'Aceito em', 'Fuso',
   'Nome', 'CPF', 'E-mail', 'WhatsApp',
   'Forma de recebimento', 'Dados de recebimento',
   'Hash SHA-256 do termo', 'Origem', 'Navegador'
@@ -117,6 +117,8 @@ function registrar(aba, dados) {
   aba.appendRow([
     new Date(),
     dados.idAssinatura || '',
+    dados.programa || 'padrao',
+    dados.comissao || '',
     dados.versaoTermo || '',
     (dados.assinatura && dados.assinatura.dataHoraLegivel) || '',
     (dados.assinatura && dados.assinatura.fusoHorario) || '',
@@ -171,6 +173,7 @@ function comprovanteHTML(dados) {
     ['E-mail', dados.parceiro.email],
     ['WhatsApp', dados.parceiro.whatsapp],
     ['Recebimento da comissão', resumoRecebimento(dados.recebimento)],
+    ['Comissão do parceiro', (dados.comissao || '') + ' do lucro da primeira mensalidade'],
     ['Versão do termo', dados.versaoTermo],
     ['Data e hora do aceite', a.dataHoraLegivel + (a.fusoHorario ? ' (' + a.fusoHorario + ')' : '')],
     ['Registro técnico', a.dataHoraISO + ' · ' + dados.idAssinatura],
@@ -226,6 +229,7 @@ function enviarParaParceiro(dados, pdf) {
     '<p>Seu aceite ao <strong>Termo do Programa de Corretores Parceiros</strong> foi registrado. ' +
     'A via assinada está em anexo, em PDF — guarde com você.</p>' +
     '<p style="background:#FAF7F2;border:1px solid rgba(30,64,56,.14);border-radius:12px;padding:16px;font-size:13px">' +
+    '<strong>Sua comissão:</strong> ' + escapar(dados.comissao || '') + ' do lucro da primeira mensalidade<br>' +
     '<strong>Versão do termo:</strong> ' + escapar(dados.versaoTermo) + '<br>' +
     '<strong>Aceito em:</strong> ' + escapar(a.dataHoraLegivel) + '<br>' +
     '<strong>Recebimento da comissão:</strong> ' + escapar(resumoRecebimento(dados.recebimento)) +
@@ -248,7 +252,7 @@ function enviarParaConsultoria(dados, pdf) {
   const a = dados.assinatura || {};
   const miolo =
     '<p><strong>' + escapar(dados.parceiro.nome) + '</strong> aceitou o termo versão ' +
-    escapar(dados.versaoTermo) + '.</p>' +
+    escapar(dados.versaoTermo) + ' — acordo de <strong>' + escapar(dados.comissao || '') + '</strong>.</p>' +
     '<p style="background:#FAF7F2;border:1px solid rgba(30,64,56,.14);border-radius:12px;padding:16px;font-size:13px">' +
     '<strong>CPF:</strong> ' + escapar(dados.parceiro.cpf) + '<br>' +
     '<strong>E-mail:</strong> ' + escapar(dados.parceiro.email) + '<br>' +
@@ -261,7 +265,7 @@ function enviarParaConsultoria(dados, pdf) {
 
   MailApp.sendEmail({
     to: CONFIG.emailConsultoria,
-    subject: 'Novo aceite — ' + dados.parceiro.nome,
+    subject: 'Novo aceite (' + (dados.comissao || '') + ') — ' + dados.parceiro.nome,
     htmlBody: moldura('Novo parceiro assinou o termo', miolo),
     attachments: [pdf],
     name: 'Corretores Parceiros'
@@ -280,6 +284,8 @@ function testarEnvio() {
   const exemplo = {
     tipo: 'aceite-termo-corretor-parceiro',
     idAssinatura: 'teste-' + Date.now(),
+    programa: 'padrao',
+    comissao: '25%',
     versaoTermo: '1',
     parceiro: {
       nome: 'Camila Ribeiro',
