@@ -291,7 +291,7 @@
                   <option value="telefone">Telefone</option>
                   <option value="aleatoria">Aleatória</option>
                 </select>
-                <input type="text" id="pix-chave" placeholder="Informe a chave" autocomplete="off">
+                <input type="text" id="pix-chave" placeholder="000.000.000-00" inputmode="numeric" maxlength="14" autocomplete="off">
               </div>
               <span class="erro">Informe a sua chave PIX.</span>
             </div>
@@ -946,6 +946,72 @@
     r = (s * 10) % 11; if (r === 10 || r === 11) r = 0;
     return r === parseInt(c.charAt(10), 10);
   }
+  function mascaraEVP(v){
+    var d = (v || "").toLowerCase().replace(/[^0-9a-f]/g, "").slice(0, 32);
+    return [d.slice(0,8), d.slice(8,12), d.slice(12,16), d.slice(16,20), d.slice(20,32)]
+      .filter(function(p){ return p.length; }).join("-");
+  }
+
+  /* Cada tipo de chave PIX tem formato próprio: o campo se adapta ao que o
+     parceiro escolheu, em vez de aceitar qualquer coisa. */
+  var FORMATOS_PIX = {
+    cpf: {
+      placeholder: "000.000.000-00",
+      inputmode: "numeric",
+      limite: 14,
+      erro: "Informe um CPF válido como chave PIX.",
+      formatar: mascaraCPF,
+      valido: cpfValido
+    },
+    email: {
+      placeholder: "voce@email.com.br",
+      inputmode: "email",
+      limite: 77,
+      erro: "Informe um e-mail válido como chave PIX.",
+      formatar: function(v){ return (v || "").replace(/\s/g, "").toLowerCase(); },
+      valido: emailValido
+    },
+    telefone: {
+      placeholder: "(21) 99999-9999",
+      inputmode: "numeric",
+      limite: 15,
+      erro: "Informe o telefone com DDD, com 10 ou 11 dígitos.",
+      formatar: function(v){ return mascara(v); },
+      valido: function(v){
+        var d = (v || "").replace(/\D/g, "");
+        return d.length === 10 || d.length === 11;
+      }
+    },
+    aleatoria: {
+      placeholder: "00000000-0000-0000-0000-000000000000",
+      inputmode: "text",
+      limite: 36,
+      erro: "A chave aleatória tem 36 caracteres, no formato 8-4-4-4-12.",
+      formatar: mascaraEVP,
+      valido: function(v){
+        return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test((v || "").trim().toLowerCase());
+      }
+    }
+  };
+
+  function formatoPix(){
+    return FORMATOS_PIX[pixTipo.value] || FORMATOS_PIX.cpf;
+  }
+  function aplicarFormatoPix(limpar){
+    var f = formatoPix();
+    pixChave.placeholder = f.placeholder;
+    pixChave.setAttribute("inputmode", f.inputmode);
+    pixChave.maxLength = f.limite;
+    var erro = campoPix.querySelector(".erro");
+    if (erro) erro.textContent = f.erro;
+    if (limpar) pixChave.value = "";
+    else pixChave.value = f.formatar(pixChave.value);
+    campoPix.classList.remove("invalido");
+  }
+  function chavePixValida(){
+    return formatoPix().valido(pixChave.value);
+  }
+
   function formaRecebimento(){
     var r = document.querySelector('input[name="recebimento"]:checked');
     return r ? r.value : "pix";
@@ -1135,7 +1201,7 @@
     if (!cpfValido(inputCPF.value)) falhar(campoCPF);
 
     if (formaRecebimento() === "pix"){
-      if ((pixChave.value || "").trim().length < 5) falhar(campoPix);
+      if (!chavePixValida()) falhar(campoPix);
     } else {
       if ((inputBanco.value || "").trim().length < 2) falhar(campoBanco);
       if ((inputAgencia.value || "").trim().length < 2) falhar(campoAgencia);
@@ -1208,6 +1274,11 @@
     campoCPF.classList.remove("invalido");
   });
   inputEmail.addEventListener("input", function(){ campoEmail.classList.remove("invalido"); });
+  pixChave.addEventListener("input", function(){
+    pixChave.value = formatoPix().formatar(pixChave.value);
+    campoPix.classList.remove("invalido");
+  });
+  pixTipo.addEventListener("change", function(){ aplicarFormatoPix(true); });
   Array.prototype.forEach.call(document.querySelectorAll('input[name="recebimento"]'), function(r){
     r.addEventListener("change", alternarRecebimento);
   });
@@ -1217,6 +1288,7 @@
   formulario.addEventListener("input", atualizarBotaoArte);
   formulario.addEventListener("change", atualizarBotaoArte);
 
+  aplicarFormatoPix(false);
   alternarRecebimento();
   alternarBlocoEnvio();
   atualizarBotaoArte();
