@@ -609,11 +609,45 @@
       px += lg + 12;
     }
 
-    /* apoio */
+    /* apoio — o corretor anuncia a parceria; quem compara é a consultoria.
+       As linhas são calculadas na hora e o bloco se apoia no divisor de baixo,
+       para o texto continuar encaixado se ele mudar de tamanho. */
+    function quebrarLinhas(texto, largura){
+      var palavras = String(texto).split(/\s+/), linhas = [], atual = "";
+      for (var i = 0; i < palavras.length; i++){
+        var teste = atual ? atual + " " + palavras[i] : palavras[i];
+        if (atual && ctx.measureText(teste).width > largura){
+          linhas.push(atual); atual = palavras[i];
+        } else {
+          atual = teste;
+        }
+      }
+      if (atual) linhas.push(atual);
+      return linhas;
+    }
+
+    var apoio1 = "Tenho parceria de consultoria gratuita que compara as principais operadoras de saúde e apresenta opções compatíveis com o seu perfil, ajustando valor e rede credenciada de interesse.";
+    var apoio2 = "Troca de plano de Saúde/Odonto ou contratação de novo plano.";
+
+    ctx.font = "400 25px Inter, sans-serif";
+    var linhasApoio1 = quebrarLinhas(apoio1, util);
+    ctx.font = "600 25px Inter, sans-serif";
+    var linhasApoio2 = quebrarLinhas(apoio2, util);
+
+    var alturaLinha = 36, respiro = 16, baseApoio = 756;
+    var yApoio = Math.max(596, baseApoio - ((linhasApoio1.length + linhasApoio2.length - 1) * alturaLinha + respiro));
+
     ctx.fillStyle = "rgba(18,36,31,.74)";
     ctx.font = "400 25px Inter, sans-serif";
-    ctx.fillText("Comparo as principais operadoras e apresento as opções", M, 700);
-    ctx.fillText("compatíveis com o seu perfil e o seu orçamento.", M, 736);
+    for (var la = 0; la < linhasApoio1.length; la++){
+      ctx.fillText(linhasApoio1[la], M, yApoio + la * alturaLinha);
+    }
+
+    ctx.fillStyle = PALETA.salvia;
+    ctx.font = "600 25px Inter, sans-serif";
+    for (var lb = 0; lb < linhasApoio2.length; lb++){
+      ctx.fillText(linhasApoio2[lb], M, yApoio + (linhasApoio1.length + lb) * alturaLinha + respiro);
+    }
 
     /* divisor + rótulo */
     ctx.strokeStyle = PALETA.linha; ctx.lineWidth = 2;
