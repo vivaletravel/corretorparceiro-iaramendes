@@ -1,0 +1,5 @@
+# Vídeo original da câmera — HEVC, grande demais para o GitHub (limite de 100 MB
+# por arquivo) e não reproduzível na maioria dos navegadores. O que vai para o ar
+# é a versão convertida em video/apresentacao.mp4.
+*.MOV
+*.mov
